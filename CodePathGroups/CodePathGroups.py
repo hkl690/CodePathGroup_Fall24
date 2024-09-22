@@ -63,12 +63,14 @@ print(get_sum_of_odds(matrix))
 
 #!/bin/python3
 
+from itertools import filterfalse
 import math
 import os
 import random
 import re
 import sys
 import ast
+from tabnanny import check
 
 #
 # Complete the 'can_place_flowers' function below.
@@ -148,4 +150,101 @@ def merge_sorted_lists(lst1, lst2):
 lst1 = [1,3,5]
 lst2 = [2,4,6]
 print(merge_sorted_lists(lst1, lst2))
+
+string1 = "yellow"
+string2 = "screaming"
+
+final_string1 = string1[:4] + string2[-3:]
+print(final_string1)
+
+def check_pal(s):
+    left,right = 0, len(s) - 1
+    while left < right:
+        if s[left] != s[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
+
+result = check_pal("racecar")
+print(result)
+
+result = check_pal(" ")
+print(result)
+
+def seq_function(s):
+    sequence = "aeiouAEIOU"
+    result =""
+
+    for char in s:
+        if char not in sequence:
+            result += char
+
+    return result
+result = seq_function("CodePath")
+print(result)
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+import ast
+
+
+
+#
+# Complete the 'rotate_matrix' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts INTEGER_ARRAY matrix as parameter.
+#
+
+def rotate_matrix(matrix):
+    n = len(matrix)
+    for i in range(n):
+        for j in range(i + 1, n):  
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    for i in range(n):
+        matrix[i].reverse()
+    
+    return matrix
+
+matrix = [[1,2,3], [4,5,6], [7,8,9]]
+print(rotate_matrix(matrix))
+
+
+# The function accepts following parameters:
+#  1. STRING word1
+#  2. STRING word2
+
+def merge_alternately(word1, word2):
+    mergedlst = []
+    word1_pointer = 0
+    word2_pointer = 0
+    
+    while word1_pointer < len(word1) and word2_pointer < len(word2):
+        mergedlst.append(word1[word1_pointer])
+        word1_pointer += 1
+        mergedlst.append(word2[word2_pointer])
+        word2_pointer += 1
+    
+    while word1_pointer < len(word1):
+        mergedlst.append(word1[word1_pointer])
+        word1_pointer += 1
+    
+    while word2_pointer < len(word2):
+        mergedlst.append(word2[word2_pointer])
+        word2_pointer += 1
+    
+    return ''.join(mergedlst)
+
+# Test cases
+print(merge_alternately("abc", "zyx"))  # Expected output: "azbycx"
+print(merge_alternately("abcd", "xyz"))  # Expected output: "axbyczd"
+print(merge_alternately("abc", "wxyz"))  # Expected output: "awbxcxyz"
+print(merge_alternately("", "xyz"))  # Expected output: "xyz"
+print(merge_alternately("abc", ""))  # Expected output: "abc"
 
