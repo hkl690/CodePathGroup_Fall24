@@ -248,3 +248,31 @@ print(merge_alternately("abc", "wxyz"))  # Expected output: "awbxcxyz"
 print(merge_alternately("", "xyz"))  # Expected output: "xyz"
 print(merge_alternately("abc", ""))  # Expected output: "abc"
 
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+import ast
+# Complete the 'find_value_index' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts following parameters:
+#  1. INTEGER_ARRAY matrix
+#  2. INTEGER value
+
+def find_value_index(matrix, value):
+    # Write your code here
+    n = len(matrix)
+    for i in range(n):
+        for j in range(len(matrix[i])):  
+            if matrix[i][j] == value:
+                return [i,j]
+   
+    return [-1,-1]
+
+matrix = [[1,2,3,4], [5,6,7,8], [9,10,11,12]]
+value = 12
+print(find_value_index(matrix, value)) # ouput [2,3]
