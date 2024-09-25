@@ -1,6 +1,7 @@
 #   live share link:
 #   https://prod.liveshare.vsengsaas.visualstudio.com/join?97E9181CCA5EF950A773E31C93577CA37AE9
 
+
 print("hello")
 
 
@@ -11,7 +12,8 @@ print("hello")
 # An artist artists[i] has set time set_times[i]. Assume i <= 0 < n and len(artists) == len(set_times).
 
 def lineup(artists, set_times):
-    
+    schedule = zip(artists, set_times)
+    return dict(schedule)
 
 
 artists1 = ["Kendrick Lamar", "Chappell Roan", "Mitski", "Rosalia"]
@@ -22,9 +24,11 @@ set_times2 = []
 
 print(lineup(artists1, set_times1))
 print(lineup(artists2, set_times2))
+
 # Example Output:
 # {"Kendrick Lamar": "9:30 PM", "Chappell Roan": "5:00 PM", "Mitski": "2:00 PM", "Rosalía": "7:30 PM"}
 # {}
+
 
 
 # Problem 2: Planning App
@@ -38,7 +42,11 @@ print(lineup(artists2, set_times2))
 # return the dictionary {"message": "Artist not found"}.
 
 def get_artist_info(artist, festival_schedule):
-    
+    not_found = {"message": "Artist not found"}
+    if artist not in festival_schedule:
+        return not_found
+    else:
+        return festival_schedule.get(artist)
 
 
 festival_schedule = {
