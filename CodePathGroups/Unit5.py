@@ -86,3 +86,63 @@ alice.print_inventory()
 
 alice.furniture = ["acoustic guitar", "ironwood kitchenette", "kotatsu", "kotatsu"]
 alice.print_inventory()
+
+
+# Cheatsheet examples:
+class Dog:
+    def __init__(self, name, breed, owner):
+        self.name = name
+        self.breed = breed
+        self.owner = owner
+    
+    def call_dog(self):
+        print(f"Here {self.name}!")
+
+    def command_trick(self, trick):
+        print(f"{self.name}, {trick}!")
+
+
+my_dog = Dog('Fido', 'Cocker Spaniel', 'Ada Lovelace')
+print(my_dog.name) # Prints Fido
+
+my_dog.call_dog() # Prints 'Here Fido!'
+
+my_dog.command_trick("roll over") # Prints 'Fido, roll over!'
+
+class Node:
+    def __init__(self, val, next=None):
+        self.value = val
+        self.next = next
+
+def pair_nodes(head):
+    # Check if the list is empty
+    if not head:
+        return None
+    
+    # Pass 1: Get the length of the list
+    current = head
+    length = 0
+    while current:
+        length += 1
+        current = current.next
+
+    # If the length is odd, return None
+    if length % 2 != 0:
+        return None
+
+    # Pass 2: If the length is even, create tuples of pairs
+    pairs = []
+    current = head
+    while current:
+        # Since we know the list length is even, current.next should always be valid here
+        pairs.append((current.value, current.next.value))
+        current = current.next.next  # Move to the next pair
+
+    return pairs
+
+head = Node(1, Node(2, Node(3, Node(4))))
+print(pair_nodes(head))  # Output should be [(1, 2), (3, 4)]
+head = Node(1, Node(2, Node(3)))
+print(pair_nodes(head))  # Output should be None
+head = None
+print(pair_nodes(head))  # Output should be None
