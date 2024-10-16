@@ -146,3 +146,5 @@ head = Node(1, Node(2, Node(3)))
 print(pair_nodes(head))  # Output should be None
 head = None
 print(pair_nodes(head))  # Output should be None
+
+
