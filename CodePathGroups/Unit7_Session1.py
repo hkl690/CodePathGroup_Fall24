@@ -1,5 +1,3 @@
-from itertools import count
-
 
 def count_suits_iterative(suits):
     count = 0
@@ -60,3 +58,42 @@ def count_deposits(resources):
 
 print(count_deposits("VVVVV"))
 print(count_deposits("VXVYGA"))
+
+# binary search
+def find_cruise_length(cruise_lengths, vacation_length):
+    left = 0
+    right = len(cruise_lengths) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        if cruise_lengths[mid] > vacation_length:
+            right = mid -1
+        elif cruise_lengths[mid] < vacation_length:
+            left = mid + 1
+        else:
+            return True
+
+    return False
+
+print(find_cruise_length([9, 10, 11, 12, 13, 14, 15], 13))
+
+print(find_cruise_length([8, 9, 12, 13, 13, 14, 15], 11))
+
+def find_cabin_index(cabins, preferred_deck):
+    low = 0
+    high = len(cabins) - 1
+    def helper(low, high, cabins, preferred_deck):
+        if low > high:
+            return low
+        
+        mid = (low + high) // 2
+        if cabins[mid] < preferred_deck:
+            return helper(mid + 1, high, cabins, preferred_deck)
+        elif cabins[mid] > preferred_deck:
+            return helper(low, mid - 1, cabins, preferred_deck)
+        else:
+            return mid
+    return helper(low, high, cabins, preferred_deck)
+print(find_cabin_index([1, 3, 5, 6], 5))
+print(find_cabin_index([1, 3, 5, 6], 2))
+print(find_cabin_index([1, 3, 5, 6], 7))
